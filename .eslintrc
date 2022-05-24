@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "@antfu"
+  ],
+  "rules": {
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "all"
+      }
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "no-void": "off",
+    "yield-star-spacing": [
+      "error",
+      "after"
+    ],
+    "no-extra-parens": ["error","all"]
+
+  },
+  "ignorePatterns": [
+    "test/assets/**/*",
+    "*.js"
+  ]
+}
