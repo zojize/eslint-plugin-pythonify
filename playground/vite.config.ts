@@ -5,6 +5,7 @@ import Unocss from 'unocss/vite'
 import Inspect from 'vite-plugin-inspect'
 
 export default defineConfig({
+  base: '/eslint-plugin-pythonify/',
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,

@@ -16,13 +16,14 @@ export const useInlineDecoration = async (decorations: MaybeRef<monaco.editor.IM
 
   let oldDecorations: string[] | undefined
 
-  if (isRef(decorations) || isReactive(decorations)) {
-    watch(
-      decorations,
-      () => oldDecorations = editor.value.deltaDecorations(oldDecorations ?? [], unref(decorations)),
-    )
-  }
-  oldDecorations = editor.value.deltaDecorations(oldDecorations ?? [], unref(decorations))
+  const updateDecoration = () => oldDecorations = editor.value.deltaDecorations(oldDecorations ?? [], unref(decorations))
+
+  if (isRef(decorations) || isReactive(decorations))
+    watch(decorations, updateDecoration)
+
+  editor.value.onDidChangeModel(updateDecoration)
+  editor.value.onDidChangeModelContent(updateDecoration)
+  updateDecoration()
   tryOnScopeDispose(() => editor.value.deltaDecorations(oldDecorations ?? [], []))
 }
 

@@ -54,7 +54,7 @@ const decorationOptions = computed(() => verifyResult.value
     range: new monaco.Range(line, column, endLine, endColumn),
     options: {
       hoverMessage: { value: message },
-      inlineClassName: 'border-b-1 border-red border-dashed',
+      inlineClassName: ':uno: border-b-1 border-b-red border-b-dashed',
     },
   })),
 )
@@ -76,6 +76,8 @@ const fixedEditor = ref<InstanceType<typeof MonacoEditor>>()
 
 const onScrollChange = (editorRef: InstanceType<typeof MonacoEditor> | undefined, e: monaco.IScrollEvent) =>
   editorRef?.editor?.setScrollTop?.(e.scrollTop)
+
+const { log } = console
 </script>
 
 <template>
@@ -90,7 +92,12 @@ const onScrollChange = (editorRef: InstanceType<typeof MonacoEditor> | undefined
   <main class=":uno: flex flex-col w-screen h-screen">
     <div class=":uno: flex flex-row items-center h-8 px-4 gap-2">
       <label>
-        gap <input v-model="ruleOptions.gap" type="number" class=":uno: bg-transparent w-18">
+        gap
+        <input
+          v-model="ruleOptions.gap"
+          type="number" class=":uno: bg-transparent w-18"
+          min="0"
+        >
       </label>
     </div>
 
